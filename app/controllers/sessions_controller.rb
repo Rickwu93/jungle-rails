@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
   end
-
+#creating new users
   def create
     user = User.find_by_email(params[:email])
     # If the user exists AND the password entered is correct.
