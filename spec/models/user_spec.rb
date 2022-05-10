@@ -28,5 +28,15 @@ RSpec.describe User, type: :model do
       })
       expect(@user2.errors.full_messages).to include "Email has already been taken"
     end
-  end
-end  
+
+    it "should require a name during signup" do
+      @user = User.create({
+        name: nil,
+        email: "LIGHT@DEATHNOTE.com",
+        password: "testing1",
+        password_confirmation: "testing1"
+      })
+      expect(@user.errors.full_messages).to include "Name can't be blank"
+    end
+  end  
+end
