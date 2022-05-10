@@ -53,3 +53,28 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 - Bootstrap 5
 - PostgreSQL 9.x
 - Stripe
+- gem 'rails', '6.1.5.1'
+- gem 'pg'
+- gem 'puma', '~> 5.0'
+- gem 'sass-rails', '>= 6'
+- gem 'webpacker', '~> 5.0'
+- gem 'turbolinks', '~> 5'
+- gem 'jbuilder', '~> 2.7'
+- gem 'jquery-rails'
+- gem 'sdoc', group: :doc
+- gem 'bcrypt', '~> 3.1.7'
+- gem 'bootstrap', '~> 5.0.1'
+- gem 'font-awesome-rails'
+- gem 'money-rails'
+- gem 'stripe'
+- gem 'rmagick'
+- gem 'faker'
+- gem 'carrierwave'
+- gem 'pry'
+- rails/actioncable": "^6.0.0",
+- rails/activestorage": "^6.0.0",
+- rails/ujs": "^6.0.0",
+- rails/webpacker": "5.4.0",
+- "turbolinks": "^5.2.0",
+- "webpack": "^4.46.0",
+- "webpack-cli": "^3.3.12"
