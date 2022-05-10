@@ -38,5 +38,27 @@ RSpec.describe User, type: :model do
       })
       expect(@user.errors.full_messages).to include "Name can't be blank"
     end
-  end  
+
+    it "should require a email during signup" do
+      @user = User.create({
+        name: "Yagami Light",
+        email: nil,
+        password: "testing1",
+        password_confirmation: "testing1"
+      })
+      expect(@user.errors.full_messages).to include "Email can't be blank"
+    end  
+
+    it "require the password length to be more than 5 characters" do
+      @user = User.create({
+        name: "Yagami Light",
+        email: "light@deathnote.com",
+        password: "test",
+        password_confirmation: "test"
+      })
+      expect(@user.errors.full_messages).to include "Password is too short (minimum is 5 characters)"
+    end
+  end
+  
+  
 end
