@@ -60,5 +60,46 @@ RSpec.describe User, type: :model do
     end
   end
   
-  
+  describe '.authenticate_with_credentials' do
+    it "should login the user with the valid credentials" do
+      User.create!({
+        name: "Yagami Light",
+        email: "light@deathnote.com",
+        password: "testing1",
+        password_confirmation: "testing1"
+      })
+      @user_lookup = User.authenticate_with_credentials("light@deathnote.com", "testing1")
+      expect(@user_lookup[:name]).to eq("Yagami Light")
+      expect(@user_lookup[:email]).to eq("light@deathnote.com")
+    end
+
+    it "should not login with invalid credentials" do
+      @bad_user = User.authenticate_with_credentials("invalid@test.com", "12345")
+      expect(@bad_user).to be_nil
+    end
+
+    it "should login the user even with trailing spaces in the email field" do
+      User.create!({
+        name: "Misa Amane",
+        email: "misa@deathnote.com",
+        password: "random1",
+        password_confirmation: "random1"
+      })
+      @spaces_user = User.authenticate_with_credentials("    misa@deathnote.com      ", "random1")
+      expect(@spaces_user[:name]).to eq("Misa Amane")
+      expect(@spaces_user[:email]).to eq("misa@deathnote.com")
+    end  
+
+    it "should log the user in even if their email is case sensitive" do
+      User.create!({
+        name: "Misa Amane",
+        email: "Misa@deathnote.com",
+        password: "random1",
+        password_confirmation: "random1"
+      })
+      @spaces_user = User.authenticate_with_credentials("MIsA@dEatHnOte.com", "random1")
+      expect(@spaces_user[:name]).to eq("Misa Amane")
+      expect(@spaces_user[:email]).to eq("Misa@deathnote.com")
+    end  
+  end
 end

@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   #find the email and matches the password parameters
   def self.authenticate_with_credentials(email, password)
-    user = User.find_by_email(email.strip.downcase)
+    user = User.where('lower(email) = ?', email.strip.downcase).first
+
     if user && user.authenticate(password)
       user
     else
